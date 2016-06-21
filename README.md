@@ -1,7 +1,7 @@
 nginx-docker-ansible
 ====================
 
-A boilerplate Playbook for deploying a Nginx reverse proxy + Docker container server.
+A boilerplate Playbook for deploying a Nginx reverse proxy + Docker container server. Comes with docker-compose support out-of-the-box.
 
 Server Requirements
 -------------------
@@ -11,7 +11,7 @@ Server Requirements
 Getting Started
 ---------------
 1. Add your hosts to `*_hosts` files
-2. Fill in your git repo URL and deploy keys in `roles/app/vars/main.yml`
+2. Fill in your container repo URL and deploy keys in `roles/app/vars/main.yml`
 3. `ansible-playbook -i staging_hosts main.yml`
 
 Roles
