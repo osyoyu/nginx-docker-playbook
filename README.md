@@ -10,9 +10,14 @@ Server Requirements
 
 Getting Started
 ---------------
-1. Add your hosts to `*_hosts` files
+1. Edit the following files:
+  - `{production,staging}_hosts`
+  - `group_vars/{production,staging}.yml`: hostnames (used as `server_name` in `roles/app/files/nginx.conf`)
+  - `roles/app/vars/main.yml`: URL to your git repo, and SSH keys to access it
+
 2. Fill in your container repo URL and deploy keys in `roles/app/vars/main.yml`
 3. `ansible-playbook -i staging_hosts main.yml`
+4. It works!
 
 Roles
 -----
