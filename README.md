@@ -8,6 +8,10 @@ Server Requirements
 - Ubuntu 16.04
 - Ansible requirements (basically ssh and python)
 
+Application Requirements
+------------------------
+- A `Dockerfile` and `docker-compose.yml`
+
 Getting Started
 ---------------
 1. Edit the following files:
