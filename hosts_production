@@ -1,0 +1,9 @@
+[api]
+PRODUCTION_HOST1
+PRODUCTION_HOST2
+
+[api:vars]
+ansible_user=ubuntu
+
+[production:children]
+api

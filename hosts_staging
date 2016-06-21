@@ -1,0 +1,9 @@
+[api]
+STAGING_HOST1
+STAGING_HOST2
+
+[api:vars]
+ansible_user=ubuntu
+
+[staging:children]
+api
