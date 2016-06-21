@@ -1,0 +1,7 @@
+---
+- name: nginx をインストール
+  apt: name=nginx
+
+- name: nginx のデフォルトの設定を削除
+  file: path=/etc/nginx/sites-enabled/default
+        state=absent

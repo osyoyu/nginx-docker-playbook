@@ -1,0 +1,10 @@
+---
+- hosts: api
+  become: yes
+  roles:
+    - docker
+    - app
+
+  tasks:
+    - name: linux-kernel-extra のインストール
+      apt: name=linux-name-

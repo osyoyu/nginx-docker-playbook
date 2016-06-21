@@ -1,0 +1,44 @@
+---
+- name: SSH 公開鍵を設定
+  copy: content={{ git_ssh_pub_key }}
+        dest=/root/.ssh/id_rsa.pub
+        mode=0644
+
+- name: SSH 秘密鍵を設定
+  copy: content={{ git_ssh_priv_key }}
+        dest=/root/.ssh/id_rsa
+        mode=0600
+
+- name: nginx に設定を追加
+  copy: src=nginx.conf
+        dest=/etc/nginx/sites-available/{{ app_name }} mode=0644
+
+- name: nginx の設定を編集 (hostname)
+  replace: dest=/etc/nginx/sites-available/{{ app_name }}
+           regexp='SERVER_NAME'
+           replace={{ hostname }}
+
+- name: nginx の設定を有効化
+  file: src=/etc/nginx/sites-available/{{ app_name }}
+        dest=/etc/nginx/sites-enabled/{{ app_name }}
+        state=link
+
+- name: nginx ログ用のディレクトリを作成
+  file: path=/var/log/nginx/{{ app_name }}
+        state=directory
+        mode=0755
+
+- name: nginx を再起動
+  service: name=nginx state=restarted
+
+- name: リポジトリを引っ張ってくる
+  git: repo={{ git_repo }} dest=/root/{{ app_name }} accept_hostkey=yes
+
+- name: docker-compose build
+  shell: docker-compose -f /root/{{ app_name }}/docker-compose.yml build
+
+- name: docker-compose down
+  shell: docker-compose -f /root/{{ app_name }}/docker-compose.yml down
+
+- name: docker-compose up
+  shell: docker-compose -f /root/{{ app_name }}/docker-compose.yml up -d
