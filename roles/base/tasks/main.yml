@@ -1,0 +1,2 @@
+- name: linux-kernel-extra のインストール
+  apt: name=linux-image-extra-{{ ansible_kernel }}
