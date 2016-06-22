@@ -10,13 +10,9 @@
         mode=0600
 
 - name: nginx に設定を追加
-  copy: src=nginx.conf
-        dest=/etc/nginx/sites-available/{{ app_name }} mode=0644
-
-- name: nginx の設定を編集 (hostname)
-  replace: dest=/etc/nginx/sites-available/{{ app_name }}
-           regexp='SERVER_NAME'
-           replace={{ hostname }}
+  template: src=roles/app/files/nginx.conf
+            dest=/etc/nginx/sites-available/{{ app_name }}
+            mode=0644
 
 - name: nginx の設定を有効化
   file: src=/etc/nginx/sites-available/{{ app_name }}
