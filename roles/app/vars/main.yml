@@ -3,10 +3,10 @@ app_name: my-app
 
 git_repo: ssh://user@host/path/to/repo
 
-git_deploy_key_pub: |
+git_ssh_pub_key: |
   ssh-rsa YOUR_RSA_PUBLIC_KEY_HERE
 
-git_deploy_key_priv: |
+git_ssh_priv_key: |
   -----BEGIN RSA PRIVATE KEY-----
   YOUR_RSA_PRIVATE_KEY_HERE
   -----END RSA PRIVATE KEY-----
